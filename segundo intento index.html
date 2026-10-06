@@ -1,0 +1,412 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Oraciones para la boda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+SC:wght@500;600&family=Pinyon+Script&display=swap">
+<style>
+/* Layout: una sola columna centrada en el cuerpo; arriba el contador grande, debajo una hilera de velas (una por persona), el formulario para unirse y el muro de oraciones. */
+:root {
+  --bg: #fdf4f8;
+  --surface: #fffafc;
+  --ink: #5a1d35;
+  --muted: #86506a;
+  --line: #f0cfdc;
+  --accent: #8b3050;
+  --accent-ink: #ffffff;
+  --sage: #566c37;
+  --berry: #c35d81;
+  --lime: #a3c14a;
+  --flame: #f5b942;
+  --wax: #ced8a4;
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-caps: "Cormorant SC", "Cormorant Garamond", Georgia, serif;
+  --font-script: "Pinyon Script", "Snell Roundhand", cursive;
+  --font-body: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #2a1020; --surface: #351829; --ink: #fbeaf1; --muted: #dbadc2;
+    --line: #5c2d46; --accent: #e8a9c1; --accent-ink: #2a1020;
+    --sage: #a3c14a; --berry: #d77fa0; --lime: #a3c14a;
+    --flame: #f5c85a; --wax: #5c6b3a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #2a1020; --surface: #351829; --ink: #fbeaf1; --muted: #dbadc2;
+  --line: #5c2d46; --accent: #e8a9c1; --accent-ink: #2a1020;
+  --sage: #a3c14a; --berry: #d77fa0; --lime: #a3c14a;
+  --flame: #f5c85a; --wax: #5c6b3a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 19px; font-weight: 500; line-height: 1.5; font-variant-numeric: lining-nums; padding-inline: 20px; padding-block: 32px 64px; }
+main { max-width: 640px; margin-inline: auto; display: flex; flex-direction: column; gap: 36px; }
+h1, h2, .big { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; }
+.eyebrow { font-family: var(--font-caps); font-size: 15px; letter-spacing: .18em; color: var(--accent); font-weight: 600; }
+header { display: flex; flex-direction: column; gap: 10px; }
+h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); line-height: 1.15; font-weight: 500; }
+h1 em { font-family: var(--font-script); font-style: normal; font-size: 1.3em; line-height: 1.1; color: var(--accent); }
+.msg { color: var(--muted); max-width: 52ch; margin: 0; }
+.when { font-family: var(--font-caps); font-size: 17px; letter-spacing: .1em; font-variant-numeric: lining-nums tabular-nums; font-weight: 600; color: var(--accent); }
+
+.photo { margin: 0; }
+.photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 60%; border-radius: 4px; }
+.story { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+.story p { margin: 0; max-width: 40ch; text-wrap: pretty; }
+.story .sign { font-family: var(--font-script); font-size: 2rem; line-height: 1.3; color: var(--accent); }
+.heart { display: inline-block; vertical-align: -3px; fill: #fff; stroke: var(--accent); stroke-width: 1.4; stroke-linejoin: round; }
+.prayer { position: relative; padding: 52px 34px; border: 2px solid var(--accent); border-radius: 26px; background: var(--surface); }
+.prayer.framed { border: 0; border-radius: 0; background: none; }
+.prayer .frame { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; display: none; }
+.prayer.framed .frame { display: block; }
+#frameOuter { fill: var(--surface); stroke: var(--accent); stroke-width: 3.5; stroke-linejoin: round; }
+#frameInner { fill: none; stroke: var(--sage); stroke-width: 1.5; stroke-linejoin: round; }
+.prayer-body { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+.prayer blockquote { margin: 0; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.prayer blockquote p { margin: 0; font-style: italic; font-size: clamp(1.35rem, 5.2vw, 1.7rem); line-height: 1.3; max-width: 30ch; text-wrap: pretty; }
+.prayer .amen { font-family: var(--font-script); font-style: normal; font-size: 2.2rem; color: var(--accent); }
+.counter { display: flex; flex-wrap: wrap; gap: 12px 48px; align-items: flex-end; justify-content: center; }
+.stat { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
+.big { font-size: clamp(4rem, 20vw, 6.5rem); line-height: .95; font-weight: 500; color: var(--accent); font-variant-numeric: lining-nums tabular-nums; }
+.stat.second .big { font-size: clamp(2.4rem, 11vw, 3.6rem); color: var(--berry); }
+.stat .label { font-size: 17px; color: var(--muted); }
+
+.candles { display: flex; flex-wrap: wrap; gap: 8px 6px; align-items: flex-end; justify-content: center; min-height: 40px; }
+#candlesEmpty { text-align: center; }
+.candle { display: flex; flex-direction: column; align-items: center; }
+.flame { width: 7px; height: 11px; border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; background: var(--flame); box-shadow: 0 0 10px 2px color-mix(in srgb, var(--flame) 55%, transparent); transform-origin: 50% 100%; animation: flicker 2.6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.wax { width: 5px; height: 14px; background: var(--wax); border-radius: 1px; margin-top: 1px; }
+.candles .more { font-size: 13px; color: var(--muted); align-self: center; margin-left: 4px; }
+@keyframes flicker { 0%,100% { transform: scale(1,1) rotate(-2deg); opacity: 1; } 35% { transform: scale(.88,1.08) rotate(2deg); opacity: .88; } 70% { transform: scale(1.05,.94) rotate(-1deg); opacity: .96; } }
+@media (prefers-reduced-motion: reduce) { .flame { animation: none; } }
+.empty { color: var(--muted); margin: 0; }
+
+.panel { display: flex; flex-direction: column; gap: 16px; }
+h2 { font-size: 2rem; line-height: 1.15; font-weight: 500; }
+form { display: flex; flex-direction: column; gap: 14px; }
+label { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-caps); font-size: 16px; letter-spacing: .08em; font-weight: 600; color: var(--accent); }
+input, textarea { font: inherit; letter-spacing: 0; color: var(--ink); background: var(--bg); border: 1px solid var(--berry); border-radius: 12px; padding: 10px 14px; width: 100%; min-width: 0; }
+textarea { resize: vertical; min-height: 84px; }
+input:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button { font-family: var(--font-caps); font-size: 17px; letter-spacing: .1em; font-weight: 600; cursor: pointer; border: 0; border-radius: 999px; padding: 11px 24px; background: var(--accent); color: var(--accent-ink); align-self: flex-start; }
+button.quiet { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+button[disabled] { opacity: .55; cursor: default; }
+.status { font-size: 17px; color: var(--muted); margin: 0; min-height: 1.4em; }
+.status.err { color: #b3261e; }
+:root[data-theme="dark"] .status.err { color: #ff9b94; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .status.err { color: #ff9b94; } }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.mine { display: flex; flex-direction: column; gap: 12px; }
+.mine p { margin: 0; }
+
+.wall { display: flex; flex-direction: column; gap: 0; margin: 0; padding: 0; list-style: none; }
+.wall li { padding-block: 14px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.wall li:first-child { border-top: 0; }
+.wall .who { font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.wall .times { font-family: var(--font-caps); letter-spacing: .06em; font-size: 15px; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+.wall .note { color: var(--muted); overflow-wrap: anywhere; margin: 0; }
+details summary { cursor: pointer; font-family: var(--font-caps); letter-spacing: .08em; font-weight: 600; color: var(--accent); }
+details form { margin-top: 14px; }
+</style>
+
+<main>
+  <header>
+    <h1 id="title">Acompáñanos <em>con tu oración</em></h1>
+    <div class="when" id="when" hidden></div>
+  </header>
+
+  <figure class="photo">
+    <img src="foto.jpg" width="1200" height="900" alt="Las manos de los novios entrelazadas, con el anillo de compromiso a la vista">
+  </figure>
+
+  <section class="story">
+    <div class="eyebrow">Nuestra historia</div>
+    <p>Hace dos años, preparándonos para este momento tan esperado, escribimos juntos una oración para nuestro camino, como parte de nuestro Capital de Gracias.</p>
+    <p>Hoy queremos hacerlos parte de ella y pedirles que nos acompañen en oración.</p>
+    <p class="sign">Unidos siempre por la Alianza. <svg class="heart" viewBox="0 0 24 22" width="26" height="24" role="img" aria-label="corazón blanco"><path d="M12 20.5C5.5 15.2 2 12 2 7.6 2 4.6 4.3 2.5 7 2.5c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 2.7 0 5 2.1 5 5.1 0 4.4-3.500 7.600-10 12.900Z"/></svg></p>
+  </section>
+
+  <section class="prayer" id="prayerFrame">
+    <svg class="frame" id="frameSvg" aria-hidden="true" focusable="false"><path id="frameOuter"></path><path id="frameInner"></path></svg>
+    <div class="prayer-body">
+      <div class="eyebrow">Oración por Noni y Santiago</div>
+      <blockquote>
+        <p>Querido Jesús,</p>
+        <p>permite que Noni y Santiago puedan verse a sí mismos como el Padre los ve, enséñales a amarse a sí mismos como Tú los amas.</p>
+        <p>Permite que se vean mutuamente como el Padre los ve y se amen como Tú los amas. Hasta la cruz.</p>
+        <p class="amen">Amén.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <section aria-live="polite">
+    <div class="counter">
+      <div class="stat"><span class="big" id="people">0</span><span class="label">Unidos en oración</span></div>
+      <div class="stat second"><span class="big" id="total">0</span><span class="label">Capitales de Gracia</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="candles" id="candles"></div>
+    <p class="empty" id="candlesEmpty">Aún no hay velas encendidas. La primera puede ser la tuya.</p>
+  </section>
+
+  <section class="panel" id="joinPanel">
+    <h2 id="joinTitle">Únete en oración</h2>
+    <div id="joinBody"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Muro de oración</h2>
+    <ul class="wall" id="wall"></ul>
+    <p class="empty" id="wallEmpty">Cuando alguien se una, su nombre y su mensaje aparecerán aquí.</p>
+  </section>
+
+  <section class="panel" id="setupPanel" hidden>
+    <details id="setupDetails">
+      <summary>Configurar la página (solo tú la ves)</summary>
+      <form id="setupForm">
+        <label for="sDate">Fecha de la boda<input id="sDate" type="date"></label>
+        <button type="submit" id="sSave">Guardar</button>
+        <p class="status" id="sStatus"></p>
+      </form>
+    </details>
+  </section>
+</main>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { config: null, prayers: [], myId: null, canWrite: true, ready: false, busy: false, msg: "", msgErr: false };
+  var db = null;
+
+  function fmtDate(iso) {
+    if (!iso) return "";
+    var p = iso.split("-"); if (p.length !== 3) return "";
+    var d = new Date(+p[0], +p[1] - 1, +p[2]);
+    return d.toLocaleDateString("es", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  }
+  function daysUntil(iso) {
+    var p = iso.split("-"); var t = new Date(+p[0], +p[1] - 1, +p[2]);
+    var n = new Date(); n = new Date(n.getFullYear(), n.getMonth(), n.getDate());
+    return Math.round((t - n) / 86400000);
+  }
+
+  function renderHeader() {
+    var c = state.config;
+    var w = $("when");
+    if (c && c.date) {
+      var n = daysUntil(c.date), txt = fmtDate(c.date);
+      if (n > 1) txt += " · faltan " + n + " días";
+      else if (n === 1) txt += " · es mañana";
+      else if (n === 0) txt += " · es hoy";
+      w.textContent = txt; w.hidden = false;
+    } else { w.hidden = true; }
+  }
+
+  function renderCounts() {
+    var people = state.prayers.length, total = 0;
+    state.prayers.forEach(function (p) { total += Math.max(1, +p.times || 1); });
+    $("people").textContent = String(people);
+    $("total").textContent = String(total);
+    var box = $("candles"); box.textContent = "";
+    var max = 120, shown = Math.min(people, max);
+    for (var i = 0; i < shown; i++) {
+      var c = document.createElement("div"); c.className = "candle";
+      var f = document.createElement("div"); f.className = "flame"; f.style.setProperty("--d", ((i * 0.37) % 2.6).toFixed(2) + "s");
+      var w = document.createElement("div"); w.className = "wax";
+      c.appendChild(f); c.appendChild(w); box.appendChild(c);
+    }
+    if (people > max) { var m = document.createElement("span"); m.className = "more"; m.textContent = "+" + (people - max); box.appendChild(m); }
+    $("candlesEmpty").hidden = people > 0;
+  }
+
+  function renderWall() {
+    var ul = $("wall"); ul.textContent = "";
+    var rows = state.prayers.slice().sort(function (a, b) { return (b.at || 0) - (a.at || 0); }).slice(0, 40);
+    rows.forEach(function (p) {
+      var li = document.createElement("li");
+      var who = document.createElement("div"); who.className = "who";
+      var nm = document.createElement("span"); nm.textContent = p.name || "Alguien";
+      var tm = document.createElement("span"); tm.className = "times";
+      var t = Math.max(1, +p.times || 1); tm.textContent = t === 1 ? "1 oración" : t + " oraciones";
+      who.appendChild(nm); who.appendChild(tm); li.appendChild(who);
+      if (p.note) { var n = document.createElement("p"); n.className = "note"; n.textContent = p.note; li.appendChild(n); }
+      ul.appendChild(li);
+    });
+    $("wallEmpty").hidden = rows.length > 0;
+  }
+
+  function mine() { return state.prayers.find(function (p) { return p._id === state.myId; }) || null; }
+
+  function setMsg(t, err) { state.msg = t; state.msgErr = !!err; var s = $("jStatus"); if (s) { s.textContent = t; s.className = "status" + (err ? " err" : ""); } }
+
+  var joinKey = null;
+  function renderJoin() {
+    var m0 = mine();
+    var key = [state.ready, !!db, state.myId, state.canWrite, m0 ? (m0.times + "|" + m0.name) : "none"].join("~");
+    if (key === joinKey) return;
+    joinKey = key;
+    var body = $("joinBody"); body.textContent = "";
+    if (!state.ready) { var p0 = document.createElement("p"); p0.className = "empty"; p0.textContent = "Cargando…"; body.appendChild(p0); return; }
+    if (!db || !state.myId) {
+      var p1 = document.createElement("p"); p1.className = "empty";
+      p1.textContent = "Para sumar tu oración necesitas abrir esta página con tu cuenta de Claude. Mientras tanto, puedes ver cuántas personas nos acompañan.";
+      body.appendChild(p1); return;
+    }
+    if (!state.canWrite) {
+      var p2 = document.createElement("p"); p2.className = "empty";
+      p2.textContent = "Tu acceso a esta página es solo de lectura. Pídele a los novios que te inviten como colaborador para poder unirte.";
+      body.appendChild(p2); return;
+    }
+    var me = mine();
+    if (me) {
+      var wrap = document.createElement("div"); wrap.className = "mine";
+      var t = Math.max(1, +me.times || 1);
+      var p = document.createElement("p");
+      p.textContent = "Gracias" + (me.name ? ", " + me.name : "") + ". Llevas " + t + (t === 1 ? " oración" : " oraciones") + " por nosotros.";
+      var row = document.createElement("div"); row.className = "row";
+      var again = document.createElement("button"); again.type = "button"; again.id = "again"; again.textContent = "Orar de nuevo";
+      again.addEventListener("click", onAgain);
+      var del = document.createElement("button"); del.type = "button"; del.className = "quiet"; del.id = "leave"; del.textContent = "Quitar mi vela";
+      del.addEventListener("click", onLeave);
+      row.appendChild(again); row.appendChild(del);
+      var st = document.createElement("p"); st.className = "status"; st.id = "jStatus"; st.setAttribute("role", "status");
+      wrap.appendChild(p); wrap.appendChild(row); wrap.appendChild(st); body.appendChild(wrap);
+      return;
+    }
+    var f = document.createElement("form"); f.id = "joinForm";
+    f.innerHTML = '<label for="jName">Tu nombre<input id="jName" type="text" maxlength="60" autocomplete="given-name" required placeholder="María"></label>' +
+      '<label for="jNote">Un mensaje para nosotros (opcional)<textarea id="jNote" maxlength="280" placeholder="Estamos orando por ustedes."></textarea></label>' +
+      '<button type="submit" id="jGo">Enciendo mi vela</button><p class="status" id="jStatus" role="status"></p>';
+    f.addEventListener("submit", onJoin);
+    body.appendChild(f);
+  }
+
+  function renderSetup() {
+    var can = state.isAdmin;
+    $("setupPanel").hidden = !can;
+    if (can && !state.setupFilled) {
+      state.setupFilled = true;
+      var c = state.config || {};
+      $("sDate").value = c.date || "";
+      if (!state.config) $("setupDetails").open = true;
+    }
+  }
+
+  function errText(e) {
+    var c = e && e.code;
+    if (c === "invalid_argument") return "No tienes permiso para escribir aquí. Pídele a los novios acceso como colaborador.";
+    if (c === "quota_exceeded") return "Se alcanzó el límite de la página. Avisa a los novios.";
+    return "No se pudo guardar. Inténtalo de nuevo en un momento.";
+  }
+
+  async function onJoin(ev) {
+    ev.preventDefault();
+    if (state.busy) return;
+    var name = $("jName").value.trim(); if (!name) return;
+    var note = $("jNote").value.trim();
+    state.busy = true; $("jGo").disabled = true;
+    try {
+      await db.doc("prayers/" + state.myId).set({ name: name, note: note, times: 1, at: Date.now() });
+    } catch (e) { setMsg(errText(e), true); $("jGo").disabled = false; }
+    state.busy = false;
+  }
+  async function onAgain() {
+    if (state.busy) return; var me = mine(); if (!me) return;
+    state.busy = true; $("again").disabled = true;
+    try {
+      await db.doc("prayers/" + state.myId).update({ times: Math.max(1, +me.times || 1) + 1, at: Date.now() });
+    } catch (e) { setMsg(errText(e), true); }
+    state.busy = false; var b = $("again"); if (b) b.disabled = false;
+  }
+  async function onLeave() {
+    if (state.busy) return;
+    state.busy = true;
+    try { await db.doc("prayers/" + state.myId).delete(); } catch (e) { setMsg(errText(e), true); }
+    state.busy = false;
+  }
+
+  $("setupForm").addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    var s = $("sStatus");
+    if (!db) { s.textContent = "No se pudo conectar."; s.className = "status err"; return; }
+    $("sSave").disabled = true; s.className = "status"; s.textContent = "Guardando…";
+    try {
+      await db.doc("config/main").set({ date: $("sDate").value });
+      s.textContent = "Guardado. Ya puedes compartir el enlace.";
+    } catch (e) { s.textContent = errText(e); s.className = "status err"; }
+    $("sSave").disabled = false;
+  });
+
+  function renderAll() { renderHeader(); renderCounts(); renderWall(); renderJoin(); renderSetup(); }
+
+  async function boot() {
+    renderAll();
+    try {
+      var cl = window.claude;
+      if (!cl || !cl.use) { state.ready = true; renderAll(); return; }
+      var res = await Promise.all([cl.use("db"), cl.use("user")]);
+      db = res[0]; var user = res[1];
+      if (user) {
+        try { state.myId = await user.id(); } catch (e) {}
+        try { var cw = await user.can("data.write"); state.canWrite = cw !== false; } catch (e) {}
+        try { state.isAdmin = await user.canEdit(); } catch (e) {}
+      }
+      state.ready = true;
+      if (!db) { renderAll(); return; }
+      db.doc("config/main").onSnapshot(function (snap) {
+        state.config = snap.exists ? snap.data() : null; renderHeader(); renderSetup();
+      }, function () {});
+      db.collection("prayers").onSnapshot(function (snap) {
+        state.prayers = snap.docs.map(function (d) { var o = Object.assign({}, d.data()); o._id = d.id; return o; });
+        renderCounts(); renderWall(); renderJoin();
+      }, function () {});
+      renderAll();
+    } catch (e) { state.ready = true; renderAll(); }
+  }
+  boot();
+
+  /* Marco ondulado, como el de la invitación: un rectángulo redondeado cuyo borde sube y baja en ondas. */
+  function wavyPath(w, h, inset, amp, wl, rad) {
+    var iw = w - 2 * inset, ih = h - 2 * inset, r = Math.min(rad, iw / 2, ih / 2);
+    var pieces = [
+      { len: iw - 2 * r, at: function (u) { return [inset + r + u, inset, 0, -1]; } },
+      { len: Math.PI * r / 2, at: function (u) { var a = -Math.PI / 2 + u / r; return [inset + iw - r + r * Math.cos(a), inset + r + r * Math.sin(a), Math.cos(a), Math.sin(a)]; } },
+      { len: ih - 2 * r, at: function (u) { return [inset + iw, inset + r + u, 1, 0]; } },
+      { len: Math.PI * r / 2, at: function (u) { var a = u / r; return [inset + iw - r + r * Math.cos(a), inset + ih - r + r * Math.sin(a), Math.cos(a), Math.sin(a)]; } },
+      { len: iw - 2 * r, at: function (u) { return [inset + iw - r - u, inset + ih, 0, 1]; } },
+      { len: Math.PI * r / 2, at: function (u) { var a = Math.PI / 2 + u / r; return [inset + r + r * Math.cos(a), inset + ih - r + r * Math.sin(a), Math.cos(a), Math.sin(a)]; } },
+      { len: ih - 2 * r, at: function (u) { return [inset, inset + ih - r - u, -1, 0]; } },
+      { len: Math.PI * r / 2, at: function (u) { var a = Math.PI + u / r; return [inset + r + r * Math.cos(a), inset + r + r * Math.sin(a), Math.cos(a), Math.sin(a)]; } }
+    ];
+    var total = pieces.reduce(function (s, p) { return s + p.len; }, 0);
+    var n = Math.max(6, Math.round(total / wl));
+    var step = 2, d = "", s = 0;
+    pieces.forEach(function (p) {
+      for (var u = 0; u < p.len; u += step) {
+        var pt = p.at(u), off = amp * Math.sin(2 * Math.PI * n * (s + u) / total);
+        d += (d ? "L" : "M") + (pt[0] + pt[2] * off).toFixed(1) + " " + (pt[1] + pt[3] * off).toFixed(1);
+      }
+      s += p.len;
+    });
+    return d + "Z";
+  }
+  function drawFrame() {
+    var box = $("prayerFrame"), svg = $("frameSvg");
+    if (!box || !svg) return;
+    var w = box.offsetWidth, h = box.offsetHeight;
+    if (!w || !h) return;
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    var amp = 5;
+    $("frameOuter").setAttribute("d", wavyPath(w, h, amp + 3, amp, 44, 54));
+    $("frameInner").setAttribute("d", wavyPath(w, h, amp + 3 + 11, amp, 44, 43));
+    box.classList.add("framed");
+  }
+  drawFrame();
+  if (window.ResizeObserver) new ResizeObserver(drawFrame).observe($("prayerFrame"));
+  window.addEventListener("resize", drawFrame);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawFrame);
+})();
+</script>
+
+</body></html>
