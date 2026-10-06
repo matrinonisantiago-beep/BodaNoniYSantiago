@@ -1,5 +1,19 @@
 <!doctype html><html lang="es" data-theme="light"><head><meta name="color-scheme" content="only light"><meta name="theme-color" content="#fdf4f8"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:only light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Oraciones para la boda</title>
+<meta name="description" content="Acompaña a Noni y Santiago con tu oración y suma tus oraciones por su matrimonio.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Boda de Noni y Santiago">
+<meta property="og:title" content="Noni y Santiago · Acompáñanos con tu oración">
+<meta property="og:description" content="Queremos hacerte parte de nuestra historia. Únete en oración por nuestro matrimonio.">
+<meta property="og:url" content="https://matrinonisantiago-beep.github.io/BodaNoniYSantiago/">
+<meta property="og:image" content="https://matrinonisantiago-beep.github.io/BodaNoniYSantiago/foto.jpg">
+<meta property="og:image:alt" content="Las manos de Noni y Santiago entrelazadas, con el anillo de compromiso.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Noni y Santiago · Acompáñanos con tu oración">
+<meta name="twitter:description" content="Únete en oración por nuestro matrimonio.">
+<meta name="twitter:image" content="https://matrinonisantiago-beep.github.io/BodaNoniYSantiago/foto.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+SC:wght@500;600&family=Pinyon+Script&display=swap">
@@ -74,55 +88,66 @@ button[disabled] { opacity: .55; cursor: default; }
 
 details summary { cursor: pointer; font-family: var(--font-caps); letter-spacing: .08em; font-weight: 600; color: var(--accent); }
 details form { margin-top: 14px; }
+.languages { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.languages button { font-family: var(--font-body); font-size: 17px; letter-spacing: 0; padding: 8px 18px; min-height: 44px; border: 1px solid var(--line); background: transparent; color: var(--accent); }
+.languages button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.stat { flex: 1 1 140px; max-width: 280px; }
+.stat .label { overflow-wrap: anywhere; }
+html[lang="de"] h1 { font-size: clamp(1.9rem, 7.5vw, 3.2rem); }
+html[lang="de"] .prayer blockquote p { hyphens: auto; overflow-wrap: break-word; }
 </style></head><body>
 
 <main>
+  <nav class="languages" aria-label="Idioma" data-i18n-aria-label="languageLabel">
+    <button type="button" id="langEs" lang="es" aria-pressed="true">Español</button>
+    <button type="button" id="langDe" lang="de" aria-pressed="false">Deutsch</button>
+  </nav>
   <header>
-    <h1 id="title">Acompáñanos <em>con tu oración</em></h1>
+    <h1 id="title"><span data-i18n="headline">Acompáñanos</span> <em><span data-i18n="subtitle">con tu oración</span></em></h1>
     <div class="when" id="when" hidden></div>
   </header>
 
   <figure class="photo">
-    <img src="foto.jpg" width="1200" height="900" alt="Las manos de los novios entrelazadas, con el anillo de compromiso a la vista">
+    <img src="foto.jpg" width="1200" height="900" alt="Las manos de los novios entrelazadas, con el anillo de compromiso a la vista" data-i18n-alt="photoAlt">
   </figure>
 
   <section class="story">
-    <div class="eyebrow">Nuestra historia</div>
-    <p>Hace dos años, preparándonos para este momento tan esperado, escribimos juntos una oración para nuestro camino, como parte de nuestro Capital de Gracias.</p>
-    <p>Hoy queremos hacerlos parte de ella y pedirles que nos acompañen en oración.</p>
-    <p class="sign">Unidos siempre por la Alianza. <svg class="heart" viewBox="0 0 24 22" width="26" height="24" role="img" aria-label="corazón blanco"><path d="M12 20.5C5.5 15.2 2 12 2 7.6 2 4.6 4.3 2.5 7 2.5c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 2.7 0 5 2.1 5 5.1 0 4.4-3.500 7.600-10 12.900Z"/></svg></p>
+    <div class="eyebrow"><span data-i18n="storyTitle">Nuestra historia</span></div>
+    <p><span data-i18n="storyFirst">Hace dos años, preparándonos para este momento tan esperado, escribimos juntos una oración para nuestro camino, como parte de nuestro Capital de Gracias.</span></p>
+    <p><span data-i18n="storySecond">Hoy queremos hacerlos parte de ella y pedirles que nos acompañen en oración.</span></p>
+    <p class="sign"><span data-i18n="signature">Unidos siempre por la Alianza.</span> <svg class="heart" viewBox="0 0 24 22" width="26" height="24" role="img" aria-label="corazón blanco" data-i18n-aria-label="heartAlt"><path d="M12 20.5C5.5 15.2 2 12 2 7.6 2 4.6 4.3 2.5 7 2.5c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 2.7 0 5 2.1 5 5.1 0 4.4-3.500 7.600-10 12.900Z"/></svg></p>
   </section>
 
   <section class="prayer" id="prayerFrame">
     <svg class="frame" id="frameSvg" aria-hidden="true" focusable="false"><path id="frameOuter"></path><path id="frameInner"></path></svg>
     <div class="prayer-body">
-      <div class="eyebrow">Oración por Noni y Santiago</div>
+      <div class="eyebrow"><span data-i18n="prayerTitle">Oración por Noni y Santiago</span></div>
       <blockquote>
-        <p>Querido Jesús,</p>
-        <p>permite que Noni y Santiago puedan verse a sí mismos como el Padre los ve, enséñales a amarse a sí mismos como Tú los amas.</p>
-        <p>Permite que se vean mutuamente como el Padre los ve y se amen como Tú los amas. Hasta la cruz.</p>
-        <p class="amen">Amén.</p>
+        <p><span data-i18n="dearJesus">Querido Jesús,</span></p>
+        <p><span data-i18n="prayerFirst">permite que Noni y Santiago puedan verse a sí mismos como el Padre los ve, enséñales a amarse a sí mismos como Tú los amas.</span></p>
+        <p><span data-i18n="prayerSecond">Permite que se vean mutuamente como el Padre los ve y se amen como Tú los amas. Hasta la cruz.</span></p>
+        <p class="amen"><span data-i18n="amen">Amén.</span></p>
       </blockquote>
     </div>
   </section>
 
-  <section aria-live="polite" aria-label="Marcadores de oración">
+  <section aria-live="polite" aria-label="Marcadores de oración" data-i18n-aria-label="countsLabel">
     <div class="counter">
-      <div class="stat"><span class="big" id="people">—</span><span class="label">Unidos en oración</span></div>
-      <div class="stat second"><span class="big" id="total">—</span><span class="label">Capitales de Gracia</span></div>
+      <div class="stat"><span class="big" id="people">—</span><span class="label"><span data-i18n="peopleLabel">Unidos en oración</span></span></div>
+      <div class="stat second"><span class="big" id="total">—</span><span class="label"><span data-i18n="totalLabel">Capitales de Gracia</span></span></div>
     </div>
   </section>
 
   <p class="status" id="countStatus" role="status">Cargando los marcadores…</p>
 
   <section class="panel" id="joinPanel">
-    <h2>Únete en oración</h2>
-    <p class="msg">Cada oración nos acompaña. Añade las que has rezado desde tu último registro.</p>
-    <form id="joinForm">
-      <label for="jName">Tu nombre y apellido<input id="jName" type="text" maxlength="100" autocomplete="name" required placeholder="María García" aria-describedby="nameHelp"></label>
-      <p class="status" id="nameHelp">Usa siempre el mismo nombre para que podamos sumar tus oraciones.</p>
-      <label for="jCount">¿Cuántas oraciones has rezado?<input id="jCount" type="number" min="1" max="1000000" step="1" inputmode="numeric" required placeholder="Por ejemplo, 3"></label>
-      <button type="submit" id="jGo" disabled>Sumar mis oraciones</button>
+    <h2><span data-i18n="joinTitle">Únete en oración</span></h2>
+    <p class="msg"><span data-i18n="joinIntro">Cada oración nos acompaña. Añade las que has rezado desde tu último registro.</span></p>
+    <form id="joinForm" novalidate>
+      <label for="jName"><span data-i18n="nameLabel">Tu nombre y apellido</span><input id="jName" type="text" maxlength="100" autocomplete="name" required placeholder="María García" data-i18n-placeholder="nameExample" aria-describedby="nameHelp"></label>
+      <p class="status" id="nameHelp"><span data-i18n="nameHelp">Usa siempre el mismo nombre para que podamos sumar tus oraciones.</span></p>
+      <label for="jCount"><span data-i18n="countLabel">¿Cuántas oraciones has rezado?</span><input id="jCount" type="number" min="1" max="1000000" step="1" inputmode="numeric" required placeholder="Por ejemplo, 3" data-i18n-placeholder="countExample"></label>
+      <button type="submit" id="jGo" disabled><span data-i18n="submit">Sumar mis oraciones</span></button>
       <p class="status" id="jStatus" role="status" aria-live="polite">Cargando…</p>
     </form>
   </section>
@@ -132,14 +157,52 @@ details form { margin-top: 14px; }
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
+
+  var language = 'es', lastCounts = null;
+  var statusKey = '', statusParams = {}, statusError = false, countKey = 'loadingCounts';
+  var translations = {"es": {"headline": "Acompáñanos", "subtitle": "con tu oración", "storyTitle": "Nuestra historia", "storyFirst": "Hace dos años, preparándonos para este momento tan esperado, escribimos juntos una oración para nuestro camino, como parte de nuestro Capital de Gracias.", "storySecond": "Hoy queremos hacerlos parte de ella y pedirles que nos acompañen en oración.", "signature": "Unidos siempre por la Alianza.", "prayerTitle": "Oración por Noni y Santiago", "dearJesus": "Querido Jesús,", "prayerFirst": "permite que Noni y Santiago puedan verse a sí mismos como el Padre los ve, enséñales a amarse a sí mismos como Tú los amas.", "prayerSecond": "Permite que se vean mutuamente como el Padre los ve y se amen como Tú los amas. Hasta la cruz.", "amen": "Amén.", "peopleLabel": "Unidos en oración", "totalLabel": "Capitales de Gracia", "joinTitle": "Únete en oración", "joinIntro": "Cada oración nos acompaña. Añade las que has rezado desde tu último registro.", "nameLabel": "Tu nombre y apellido", "nameHelp": "Usa siempre el mismo nombre para que podamos sumar tus oraciones.", "countLabel": "¿Cuántas oraciones has rezado?", "submit": "Sumar mis oraciones", "photoAlt": "Las manos de los novios entrelazadas, con el anillo de compromiso a la vista", "heartAlt": "corazón blanco", "countsLabel": "Marcadores de oración", "nameExample": "María García", "countExample": "Por ejemplo, 3", "languageLabel": "Idioma", "pageTitle": "Oraciones para la boda", "description": "Acompaña a Noni y Santiago con tu oración y suma tus oraciones por su matrimonio.", "shareTitle": "Noni y Santiago · Acompáñanos con tu oración", "shareDescription": "Queremos hacerte parte de nuestra historia. Únete en oración por nuestro matrimonio.", "siteName": "Boda de Noni y Santiago", "shareAlt": "Las manos de Noni y Santiago entrelazadas, con el anillo de compromiso.", "twitterDescription": "Únete en oración por nuestro matrimonio.", "loading": "Cargando…", "loadingCounts": "Cargando los marcadores…", "staleCounts": "No se han podido actualizar los marcadores. Mostramos el último total recibido.", "failedCounts": "No se han podido cargar los marcadores. Inténtalo de nuevo en un momento.", "invalid": "Escribe tu nombre y una cantidad entera de oraciones mayor que cero.", "saving": "Guardando tus oraciones…", "successOne": "Gracias, {name}. Se ha sumado 1 oración.", "successMany": "Gracias, {name}. Se han sumado {count} oraciones.", "retry": "No pudimos confirmar el registro. Pulsa de nuevo «Sumar mis oraciones» con los mismos datos; el reintento no se contará dos veces.", "pending": "Tienes un envío pendiente de confirmar. Pulsa «Sumar mis oraciones» para reintentarlo."}, "de": {"headline": "Begleitet uns", "subtitle": "mit eurem Gebet", "storyTitle": "Unsere Geschichte", "storyFirst": "Vor zwei Jahren haben wir uns auf diesen lang ersehnten Moment vorbereitet und gemeinsam ein Gebet für unseren Weg geschrieben – als unseren Beitrag zum Gnadenkapital.", "storySecond": "Heute möchten wir euch daran teilhaben lassen und euch bitten, uns im Gebet zu begleiten.", "signature": "Für immer im Liebesbündnis verbunden.", "prayerTitle": "Gebet für Noni und Santiago", "dearJesus": "Lieber Jesus,", "prayerFirst": "lass Noni und Santiago sich selbst so sehen, wie der Vater sie sieht. Lehre sie, sich selbst so zu lieben, wie Du sie liebst.", "prayerSecond": "Lass sie einander so sehen, wie der Vater sie sieht, und einander so lieben, wie Du sie liebst. Bis ans Kreuz.", "amen": "Amen.", "peopleLabel": "Im Gebet verbunden", "totalLabel": "Beiträge zum Gnadenkapital", "joinTitle": "Bete mit uns", "joinIntro": "Jedes Gebet begleitet uns. Trage ein, wie viele Gebete du seit deinem letzten Eintrag gebetet hast.", "nameLabel": "Dein Vor- und Nachname", "nameHelp": "Verwende immer denselben Namen, damit wir deine Gebete zusammenzählen können.", "countLabel": "Wie viele Gebete hast du gebetet?", "submit": "Meine Gebete hinzufügen", "photoAlt": "Die ineinandergelegten Hände des Brautpaares mit dem sichtbaren Verlobungsring", "heartAlt": "weißes Herz", "countsLabel": "Gebetszähler", "nameExample": "Maria Schmidt", "countExample": "Zum Beispiel 3", "languageLabel": "Sprache", "pageTitle": "Gebete zur Hochzeit", "description": "Begleite Noni und Santiago mit deinem Gebet und trage deine Gebete für ihre Ehe ein.", "shareTitle": "Noni und Santiago · Begleitet uns mit eurem Gebet", "shareDescription": "Wir möchten dich an unserer Geschichte teilhaben lassen. Bete mit uns für unsere Ehe.", "siteName": "Hochzeit von Noni und Santiago", "shareAlt": "Die ineinandergelegten Hände von Noni und Santiago mit dem Verlobungsring.", "twitterDescription": "Bete mit uns für unsere Ehe.", "loading": "Wird geladen…", "loadingCounts": "Die Gebetszähler werden geladen…", "staleCounts": "Die Gebetszähler konnten nicht aktualisiert werden. Angezeigt wird der zuletzt empfangene Stand.", "failedCounts": "Die Gebetszähler konnten nicht geladen werden. Bitte versuche es gleich noch einmal.", "invalid": "Gib deinen Namen und eine ganze Zahl zwischen 1 und 1.000.000 für deine Gebete ein.", "saving": "Deine Gebete werden gespeichert…", "successOne": "Danke, {name}. Ein Gebet wurde hinzugefügt.", "successMany": "Danke, {name}. {count} Gebete wurden hinzugefügt.", "retry": "Wir konnten den Eintrag nicht bestätigen. Klicke mit denselben Angaben erneut auf „Meine Gebete hinzufügen“. Dein Eintrag wird dabei nicht doppelt gezählt.", "pending": "Ein Eintrag wartet noch auf Bestätigung. Klicke auf „Meine Gebete hinzufügen“, um es erneut zu versuchen."}};
+  try { if (localStorage.getItem('boda-language') === 'de') language = 'de'; } catch (e) {}
+  function t(key, params) {
+    var value = translations[language][key] || '';
+    return value.replace(/\{(name|count)\}/g, function (_, field) { return String((params || {})[field] ?? ''); });
+  }
+  function renderMessages() {
+    $('jStatus').textContent = t(statusKey, statusParams);
+    $('jStatus').className = 'status' + (statusError ? ' err' : '');
+    $('countStatus').textContent = t(countKey);
+  }
+  function setCountMessage(key) { countKey = key; renderMessages(); }
+  function setLanguage(next) {
+    language = next; document.documentElement.lang = language;
+    document.title = t('pageTitle');
+    document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.dataset.i18n); });
+    ['alt', 'aria-label', 'placeholder'].forEach(function (attr) {
+      document.querySelectorAll('[data-i18n-' + attr + ']').forEach(function (el) {
+        el.setAttribute(attr, t(el.getAttribute('data-i18n-' + attr)));
+      });
+    });
+    var meta = {'description':'description','og:title':'shareTitle','og:description':'shareDescription','og:site_name':'siteName','og:image:alt':'shareAlt','twitter:title':'shareTitle','twitter:description':'twitterDescription'};
+    Object.keys(meta).forEach(function (key) {
+      var el = document.querySelector('meta[name="' + key + '"], meta[property="' + key + '"]');
+      if (el) el.content = t(meta[key]);
+    });
+    document.querySelector('meta[property="og:locale"]').content = language === 'de' ? 'de_DE' : 'es_ES';
+    $('langEs').setAttribute('aria-pressed', String(language === 'es'));
+    $('langDe').setAttribute('aria-pressed', String(language === 'de'));
+    try { localStorage.setItem('boda-language', language); } catch (e) {}
+    if (lastCounts) formatCounts();
+    renderMessages(); drawFrame();
+  }
+  $('langEs').addEventListener('click', function () { setLanguage('es'); });
+  $('langDe').addEventListener('click', function () { setLanguage('de'); });
+
   var SUPABASE_URL = 'https://njrcgvncgunebomurieb.supabase.co';
   var SUPABASE_KEY = 'sb_publishable_nn1d2OGJ9chAifMxEE-mHA_45cqdn5u';
   var busy = false, reading = false, hasCounts = false, revision = 0;
   var pending = null;
   var pendingKey = 'boda-noni-santiago-envio-pendiente-v1';
-  function message(text, error) {
-    $('jStatus').textContent = text;
-    $('jStatus').className = 'status' + (error ? ' err' : '');
+  function message(key, error, params) {
+    statusKey = key; statusError = !!error; statusParams = params || {}; renderMessages();
   }
   function savePending() {
     try {
@@ -168,9 +231,12 @@ details form { margin-top: 14px; }
   function renderCounts(data) {
     var people = String(data.personas), total = String(data.oraciones);
     if (!/^\d+$/.test(people) || !/^\d+$/.test(total)) throw new Error('Respuesta no válida');
-    $('people').textContent = BigInt(people).toLocaleString('es');
-    $('total').textContent = BigInt(total).toLocaleString('es');
-    hasCounts = true; $('countStatus').textContent = '';
+    lastCounts = {people: people, total: total}; formatCounts();
+    hasCounts = true; setCountMessage('');
+  }
+  function formatCounts() {
+    $('people').textContent = BigInt(lastCounts.people).toLocaleString(language);
+    $('total').textContent = BigInt(lastCounts.total).toLocaleString(language);
   }
   async function refresh() {
     if (busy || reading || document.hidden) return;
@@ -179,32 +245,30 @@ details form { margin-top: 14px; }
       var result = await rpc('boda_contadores');
       if (started === revision && !busy) renderCounts(result);
     } catch (e) {
-      if (started === revision && !busy) $('countStatus').textContent = hasCounts
-        ? 'No se han podido actualizar los marcadores. Mostramos el último total recibido.'
-        : 'No se han podido cargar los marcadores. Inténtalo de nuevo en un momento.';
+      if (started === revision && !busy) setCountMessage(hasCounts ? 'staleCounts' : 'failedCounts');
     } finally { reading = false; }
   }
   $('joinForm').addEventListener('submit', async function (event) {
     event.preventDefault();
-    if (busy || !$('joinForm').reportValidity()) return;
+    if (busy) return;
     var name = $('jName').value.trim().replace(/\s+/g, ' ');
     var count = Number($('jCount').value);
     if (!name || name.length > 100 || !Number.isSafeInteger(count) || count < 1 || count > 1000000) {
-      message('Escribe tu nombre y una cantidad entera de oraciones mayor que cero.', true); return;
+      message('invalid', true); return;
     }
     if (!pending || pending.name !== name || pending.count !== count) {
       pending = { id: crypto.randomUUID(), name: name, count: count };
     }
     savePending(); busy = true; revision++;
     $('jGo').disabled = true; $('jName').disabled = true; $('jCount').disabled = true;
-    message('Guardando tus oraciones…');
+    message('saving');
     try {
       var result = await rpc('boda_registrar', { p_envio: pending.id, p_nombre: name, p_cantidad: count });
       renderCounts(result);
       pending = null; savePending(); $('jCount').value = '';
-      message('Gracias, ' + name + '. ' + (count === 1 ? 'Se ha sumado 1 oración.' : 'Se han sumado ' + count + ' oraciones.'));
+      message(count === 1 ? 'successOne' : 'successMany', false, { name: name, count: count });
     } catch (e) {
-      message('No pudimos confirmar el registro. Pulsa de nuevo «Sumar mis oraciones» con los mismos datos; el reintento no se contará dos veces.', true);
+      message('retry', true);
     } finally {
       busy = false; revision++;
       $('jGo').disabled = false; $('jName').disabled = false; $('jCount').disabled = false;
@@ -212,7 +276,8 @@ details form { margin-top: 14px; }
     }
   });
   $('jGo').disabled = false;
-  message(pending ? 'Tienes un envío pendiente de confirmar. Pulsa «Sumar mis oraciones» para reintentarlo.' : '');
+  message(pending ? 'pending' : '');
+  setLanguage(language);
   refresh();
   setInterval(refresh, 15000);
   document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(); });
