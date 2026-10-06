@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="es"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Oraciones para la boda</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,7 +90,7 @@ button[disabled] { opacity: .55; cursor: default; }
 
 details summary { cursor: pointer; font-family: var(--font-caps); letter-spacing: .08em; font-weight: 600; color: var(--accent); }
 details form { margin-top: 14px; }
-</style>
+</style></head><body>
 
 <main>
   <header>
@@ -122,12 +122,14 @@ details form { margin-top: 14px; }
     </div>
   </section>
 
-  <section aria-live="polite">
+  <section aria-live="polite" aria-label="Marcadores de oración">
     <div class="counter">
-      <div class="stat"><span class="big" id="people">0</span><span class="label">Unidos en oración</span></div>
-      <div class="stat second"><span class="big" id="total">0</span><span class="label">Capitales de Gracia</span></div>
+      <div class="stat"><span class="big" id="people">—</span><span class="label">Unidos en oración</span></div>
+      <div class="stat second"><span class="big" id="total">—</span><span class="label">Capitales de Gracia</span></div>
     </div>
   </section>
+
+  <p class="status" id="countStatus" role="status">Cargando los marcadores…</p>
 
   <section class="panel" id="joinPanel">
     <h2>Únete en oración</h2>
@@ -141,170 +143,96 @@ details form { margin-top: 14px; }
     </form>
   </section>
 
-  <section class="panel" id="setupPanel" hidden>
-    <details id="setupDetails">
-      <summary>Configurar la página (solo tú la ves)</summary>
-      <form id="setupForm">
-        <label for="sDate">Fecha de la boda<input id="sDate" type="date"></label>
-        <button type="submit" id="sSave">Guardar</button>
-        <p class="status" id="sStatus"></p>
-      </form>
-    </details>
-  </section>
 </main>
 
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
-  var state = { config: null, prayers: [], myId: null, canWrite: true, ready: false, busy: false, msg: "", msgErr: false };
-  var db = null;
-
-  function fmtDate(iso) {
-    if (!iso) return "";
-    var p = iso.split("-"); if (p.length !== 3) return "";
-    var d = new Date(+p[0], +p[1] - 1, +p[2]);
-    return d.toLocaleDateString("es", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  var SUPABASE_URL = 'https://njrcgvncgunebomurieb.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_nn1d2OGJ9chAifMxEE-mHA_45cqdn5u';
+  var busy = false, reading = false, hasCounts = false, revision = 0;
+  var pending = null;
+  var pendingKey = 'boda-noni-santiago-envio-pendiente-v1';
+  function message(text, error) {
+    $('jStatus').textContent = text;
+    $('jStatus').className = 'status' + (error ? ' err' : '');
   }
-  function daysUntil(iso) {
-    var p = iso.split("-"); var t = new Date(+p[0], +p[1] - 1, +p[2]);
-    var n = new Date(); n = new Date(n.getFullYear(), n.getMonth(), n.getDate());
-    return Math.round((t - n) / 86400000);
-  }
-
-  function renderHeader() {
-    var c = state.config;
-    var w = $("when");
-    if (c && c.date) {
-      var n = daysUntil(c.date), txt = fmtDate(c.date);
-      if (n > 1) txt += " · faltan " + n + " días";
-      else if (n === 1) txt += " · es mañana";
-      else if (n === 0) txt += " · es hoy";
-      w.textContent = txt; w.hidden = false;
-    } else { w.hidden = true; }
-  }
-
-  // Los nombres se comparan sin distinguir mayúsculas, tildes ni espacios repetidos.
-  function nameKey(name) {
-    return String(name || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().replace(/\s+/g, " ").toLocaleLowerCase("es");
-  }
-  function renderCounts() {
-    var names = new Set(), total = 0;
-    state.prayers.forEach(function (p) {
-      var key = nameKey(p.name), count = Number(p.times);
-      if (!key || !Number.isSafeInteger(count) || count < 1) return;
-      names.add(key); total += count;
-    });
-    $("people").textContent = String(names.size);
-    $("total").textContent = String(total);
-  }
-  function setMsg(t, err) {
-    state.msg = t; state.msgErr = !!err;
-    $("jStatus").textContent = t;
-    $("jStatus").className = "status" + (err ? " err" : "");
-  }
-  function renderJoin() {
-    var available = state.ready && !!db && state.canWrite;
-    $("jGo").disabled = !available || state.busy;
-    if (!state.ready) setMsg("Cargando…");
-    else if (!db) {
-      $("people").textContent = "—"; $("total").textContent = "—";
-      setMsg("El registro de oraciones estará disponible pronto.");
-    } else if (!state.canWrite) setMsg("El registro no está disponible en este momento.", true);
-    else setMsg(state.msg === "Cargando…" ? "" : state.msg, state.msgErr);
-  }
-
-  function renderSetup() {
-    var can = state.isAdmin;
-    $("setupPanel").hidden = !can;
-    if (can && !state.setupFilled) {
-      state.setupFilled = true;
-      var c = state.config || {};
-      $("sDate").value = c.date || "";
-      if (!state.config) $("setupDetails").open = true;
-    }
-  }
-
-  function errText(e) {
-    var c = e && e.code;
-    if (c === "invalid_argument") return "No tienes permiso para escribir aquí. Pídele a los novios acceso como colaborador.";
-    if (c === "quota_exceeded") return "Se alcanzó el límite de la página. Avisa a los novios.";
-    return "No se pudo guardar. Inténtalo de nuevo en un momento.";
-  }
-
-  // Cada envío conserva su propio registro: dos envíos simultáneos no se sobrescriben.
-  // En los marcadores se agrupan los registros por nombre, sumando todas sus oraciones.
-  var pendingEntry = null;
-  async function onJoin(ev) {
-    ev.preventDefault();
-    if (state.busy || !db || !state.canWrite) return;
-    var name = $("jName").value.trim().replace(/\s+/g, " ");
-    var count = Number($("jCount").value);
-    if (!name || !Number.isSafeInteger(count) || count < 1 || count > 1000000) {
-      setMsg("Escribe tu nombre y una cantidad entera de oraciones mayor que cero.", true); return;
-    }
-    var signature = JSON.stringify([name, count]);
-    if (!pendingEntry || pendingEntry.signature !== signature) {
-      pendingEntry = { id: crypto.randomUUID(), signature: signature, data: { name: name, times: count, at: Date.now() } };
-    }
-    state.busy = true; $("jGo").disabled = true;
-    $("jName").disabled = true; $("jCount").disabled = true;
-    setMsg("Guardando tus oraciones…");
+  function savePending() {
     try {
-      await db.doc("prayers/" + pendingEntry.id).set(pendingEntry.data);
-      var row = Object.assign({ _id: pendingEntry.id }, pendingEntry.data);
-      var existing = state.prayers.findIndex(function (p) { return p._id === row._id; });
-      if (existing < 0) state.prayers.push(row); else state.prayers[existing] = row;
-      pendingEntry = null;
-      renderCounts();
-      $("jCount").value = "";
-      setMsg("Gracias, " + name + ". Se " + (count === 1 ? "ha sumado 1 oración." : "han sumado " + count + " oraciones."));
-    } catch (e) { setMsg(errText(e), true); }
-    finally {
-      state.busy = false; $("jGo").disabled = false;
-      $("jName").disabled = false; $("jCount").disabled = false;
-    }
+      if (pending) sessionStorage.setItem(pendingKey, JSON.stringify(pending));
+      else sessionStorage.removeItem(pendingKey);
+    } catch (e) { /* El guardado compartido no depende del almacenamiento del navegador. */ }
   }
-  $("joinForm").addEventListener("submit", onJoin);
-
-  $("setupForm").addEventListener("submit", async function (ev) {
-    ev.preventDefault();
-    var s = $("sStatus");
-    if (!db) { s.textContent = "No se pudo conectar."; s.className = "status err"; return; }
-    $("sSave").disabled = true; s.className = "status"; s.textContent = "Guardando…";
+  try {
+    var restored = JSON.parse(sessionStorage.getItem(pendingKey));
+    if (restored && typeof restored.id === 'string' && typeof restored.name === 'string' && Number.isSafeInteger(restored.count)) {
+      pending = restored; $('jName').value = pending.name; $('jCount').value = pending.count;
+    }
+  } catch (e) {}
+  async function rpc(method, body) {
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 15000);
     try {
-      await db.doc("config/main").set({ date: $("sDate").value });
-      s.textContent = "Guardado. Ya puedes compartir el enlace.";
-    } catch (e) { s.textContent = errText(e); s.className = "status err"; }
-    $("sSave").disabled = false;
+      var response = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + method, {
+        method: 'POST', headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body || {}), signal: controller.signal, cache: 'no-store'
+      });
+      if (!response.ok) throw new Error('No se pudo completar la solicitud');
+      return await response.json();
+    } finally { clearTimeout(timer); }
+  }
+  function renderCounts(data) {
+    var people = String(data.personas), total = String(data.oraciones);
+    if (!/^\d+$/.test(people) || !/^\d+$/.test(total)) throw new Error('Respuesta no válida');
+    $('people').textContent = BigInt(people).toLocaleString('es');
+    $('total').textContent = BigInt(total).toLocaleString('es');
+    hasCounts = true; $('countStatus').textContent = '';
+  }
+  async function refresh() {
+    if (busy || reading || document.hidden) return;
+    reading = true; var started = revision;
+    try {
+      var result = await rpc('boda_contadores');
+      if (started === revision && !busy) renderCounts(result);
+    } catch (e) {
+      if (started === revision && !busy) $('countStatus').textContent = hasCounts
+        ? 'No se han podido actualizar los marcadores. Mostramos el último total recibido.'
+        : 'No se han podido cargar los marcadores. Inténtalo de nuevo en un momento.';
+    } finally { reading = false; }
+  }
+  $('joinForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    if (busy || !$('joinForm').reportValidity()) return;
+    var name = $('jName').value.trim().replace(/\s+/g, ' ');
+    var count = Number($('jCount').value);
+    if (!name || name.length > 100 || !Number.isSafeInteger(count) || count < 1 || count > 1000000) {
+      message('Escribe tu nombre y una cantidad entera de oraciones mayor que cero.', true); return;
+    }
+    if (!pending || pending.name !== name || pending.count !== count) {
+      pending = { id: crypto.randomUUID(), name: name, count: count };
+    }
+    savePending(); busy = true; revision++;
+    $('jGo').disabled = true; $('jName').disabled = true; $('jCount').disabled = true;
+    message('Guardando tus oraciones…');
+    try {
+      var result = await rpc('boda_registrar', { p_envio: pending.id, p_nombre: name, p_cantidad: count });
+      renderCounts(result);
+      pending = null; savePending(); $('jCount').value = '';
+      message('Gracias, ' + name + '. ' + (count === 1 ? 'Se ha sumado 1 oración.' : 'Se han sumado ' + count + ' oraciones.'));
+    } catch (e) {
+      message('No pudimos confirmar el registro. Pulsa de nuevo «Sumar mis oraciones» con los mismos datos; el reintento no se contará dos veces.', true);
+    } finally {
+      busy = false; revision++;
+      $('jGo').disabled = false; $('jName').disabled = false; $('jCount').disabled = false;
+      refresh();
+    }
   });
-
-  function renderAll() { renderHeader(); renderCounts(); renderJoin(); renderSetup(); }
-
-  async function boot() {
-    renderAll();
-    try {
-      var cl = window.claude;
-      if (!cl || !cl.use) { state.ready = true; renderAll(); return; }
-      var res = await Promise.all([cl.use("db"), cl.use("user")]);
-      db = res[0]; var user = res[1];
-      if (user) {
-        try { state.myId = await user.id(); } catch (e) {}
-        try { var cw = await user.can("data.write"); state.canWrite = cw !== false; } catch (e) {}
-        try { state.isAdmin = await user.canEdit(); } catch (e) {}
-      }
-      state.ready = true;
-      if (!db) { renderAll(); return; }
-      db.doc("config/main").onSnapshot(function (snap) {
-        state.config = snap.exists ? snap.data() : null; renderHeader(); renderSetup();
-      }, function () {});
-      db.collection("prayers").onSnapshot(function (snap) {
-        state.prayers = snap.docs.map(function (d) { var o = Object.assign({}, d.data()); o._id = d.id; return o; });
-        renderCounts(); renderJoin();
-      }, function () {});
-      renderAll();
-    } catch (e) { state.ready = true; renderAll(); }
-  }
-  boot();
+  $('jGo').disabled = false;
+  message(pending ? 'Tienes un envío pendiente de confirmar. Pulsa «Sumar mis oraciones» para reintentarlo.' : '');
+  refresh();
+  setInterval(refresh, 15000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(); });
+  window.addEventListener('online', refresh);
 
   /* Marco ondulado, como el de la invitación: un rectángulo redondeado cuyo borde sube y baja en ondas. */
   function wavyPath(w, h, inset, amp, wl, rad) {
